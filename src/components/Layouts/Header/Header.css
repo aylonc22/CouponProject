@@ -1,0 +1,79 @@
+.Header{
+   display: flex;   
+   justify-content:space-between;
+   align-items: center;
+   width: 100%;
+    background-color: #13172B;
+    color: white;
+    height: 100%;   
+}
+.Highlight{
+    color: #ff497c;
+}
+.Email:hover{
+color: #ff497c;
+cursor: pointer;
+transition: 0.2s;
+}
+.Header>.Left{
+    display: flex;
+    flex-direction: row;
+    padding-left: 2.5%;
+    width: 50%;   
+}
+.Header>.Left>.Contact{
+    display: flex;            
+}
+.Header>.Left>.Contact>div{
+   padding-left: 5px;
+}
+
+.Header>.Left>.Today{
+    display: flex;
+    padding-left: 5px;
+}
+.Header>.Left>.Today>div{
+    padding-left: 5px;
+}
+.Header>.Left>.Today>.Discount{
+  display: flex;
+}
+.Header>.Left>.Today>.Discount>div{
+    padding-left: 5px;
+}
+.Header>.Right{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    padding-right: 2.5%;
+    width: 50%;
+    
+}
+
+.Header>.Right>.Profile{
+    display: flex;
+    height: 30px;
+}
+.Header>.Right>.Profile>.Options{
+    display: flex;   
+    padding-right: 20px;    
+}
+.Header>.Right>.Profile>.OptionsHide{
+    display: flex;   
+    padding-right: 20px;
+    visibility: hidden;
+   
+}
+.ProfileButton{
+    padding-right: 20px;
+}
+.ProfileButton:hover{
+    padding-right: 20px;
+   font-size: large;
+   transition: 0.2s;
+   color: #ff497c;
+}
+.Header>.Right>.Profile:hover{
+   cursor: pointer;
+}
