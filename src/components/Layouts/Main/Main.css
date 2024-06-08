@@ -1,1 +1,51 @@
-.Main{}
+.Main{
+    display: flex;
+    flex-direction: row;
+    background-color: #f5f5f5;
+    height: 80vh;
+    width: 100%;
+}   
+.Main>.Left{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    padding-left: 7%;
+    padding-bottom: 2%;
+}
+.Main>.Right{
+    display: flex;
+    justify-content: end;
+    align-items: center;   
+    width: 50%;
+    padding-right: 8%;   
+}
+.Main>.Right>img{
+    height: 60%;
+    border-radius: 2%;   
+}
+
+.Exclusive{
+    padding-top: 5%;
+    font-size: 50px;
+}
+.Description{
+    color: #ff497c;
+    padding-top: 5%;
+    font-size: 20px;
+}
+.Shop{
+    margin-top: 5%;
+    background-color: #ff497c;
+    transition: background-color 0.3s;   
+    border-radius: 5%;
+    color: white;
+    padding: 4%;   
+}
+.Shop:hover{
+    background-color: #f5f5f5;   
+    box-shadow: 0 0 0 2px #ff497c;
+    cursor: pointer;
+    color: black;
+}

@@ -17,7 +17,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({ register, onValueCha
     return (
         <div className="inputGroup">
             <select {...register(name)}  required onChange={handleChange} >
-            {options.map((option:string)=><option>
+            {options.map((option:string)=><option key={option}>
                 {option}
             </option>)}
             </select>

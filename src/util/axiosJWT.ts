@@ -13,7 +13,9 @@ axiosJWT.interceptors.request.use(
 
 axiosJWT.interceptors.response.use(
     response=>{       
-        couponSystem.dispatch(updateTokenAction(response.headers.authorization));              
+        const authorization:string = response.headers.authorization;
+        couponSystem.dispatch(updateTokenAction(authorization));
+        sessionStorage.setItem("jwt",authorization);               
         return response;
     }
 )

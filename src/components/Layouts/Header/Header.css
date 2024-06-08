@@ -1,11 +1,11 @@
-.Header{
+.Header{   
    display: flex;   
    justify-content:space-between;
    align-items: center;
    width: 100%;
     background-color: #13172B;
-    color: white;
-    height: 100%;   
+    color: white;    
+    height: 100%;
 }
 .Highlight{
     color: #ff497c;
@@ -76,4 +76,10 @@ transition: 0.2s;
 }
 .Header>.Right>.Profile:hover{
    cursor: pointer;
+}
+.WelcomeUser{
+    padding-right: 10px;
+}
+.WelcomeUser:hover{
+    color: #ff497c;;
 }

@@ -3,7 +3,6 @@ import './Login.css';
 import { CustomInput } from '../../Input/CustomInput';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios, { AxiosError } from 'axios';
 import notify from '../../../util/notif';
 import unlock from '../../../assets/images/unlock.svg'
 import { CustomSelect } from '../../Select/CustomSelect';
@@ -11,16 +10,25 @@ import { Credentials } from '../../../model/Credentials';
 import { couponSystem } from '../../../redux/store';
 import { loginAction } from '../../../redux/authReducer';
 import {axiosErrHandler } from '../../../util/axiosErr';
+import axiosJWT from '../../../util/axiosJWT';
+import { AxiosError } from 'axios';
+
+
 export function Login():JSX.Element{
     const navigate = useNavigate();
+    const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
    const [userType,setUserType] = useState("Customer");
     const { register, handleSubmit, formState: { errors } } = useForm<Credentials>();
     const onSubmit: SubmitHandler<Credentials> = (userCredential) => {  
-         userCredential.userType = userCredential.userType.toUpperCase();
-        axios.post("http://localhost:8080/api/v1/user/login",userCredential).then(res=>{
+        if(!emailRegex.test(userCredential.email)){
+            notify.error("Email doesn't have valid pattern!");
+            return;
+        }
+        userCredential.userType = userCredential.userType.toUpperCase();
+        axiosJWT.post("http://localhost:8080/api/v1/user/login",userCredential).then(res=>{
             notify.success(`WELCOME!`)                       
             couponSystem.dispatch(loginAction({email:userCredential.email,
-                name:res.data.userName.includes('_')?res.data.userName.split('_')[0]:res.data.userName,
+                name:res.data.userName,
                 token:res.headers.authorization,
                 id:res.data.id,             
                 userType:userCredential.userType,

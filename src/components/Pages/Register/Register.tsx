@@ -11,15 +11,22 @@ import notify from '../../../util/notif';
 import { axiosErrHandler } from '../../../util/axiosErr';
 export function Register():JSX.Element{
    const navigate = useNavigate();
+   const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
    const [userType,setUserType] = useState("Customer");
     const { register, handleSubmit, formState: { errors } } = useForm<UserDetails>();
-    const onSubmit: SubmitHandler<UserDetails> = (data) => {     
+    const onSubmit: SubmitHandler<UserDetails> = (data) => {  
+        if(!emailRegex.test(data.email)){
+            notify.error("Email doesn't have valid pattern!");
+            return;
+        }   
         const newUser = {
             userName: userType == "Customer"? `${data.firstName}_${data.lastName}`:data.userName,
             email: data.email,
             password:data.password,
             userType:data.userType.toUpperCase()
-        }                
+        }  
+        console.log(newUser);
+                      
         axios.post("http://localhost:8080/api/v1/user/register",newUser).then(res=>{
             notify.success(`${userType=="Customer"? `${data.firstName} ${data.lastName}`:data.userName} WELCOME!`)
             navigate(`/Login`);

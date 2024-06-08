@@ -1,0 +1,86 @@
+.Menu{  
+    display: flex;   
+    align-items: center; 
+    justify-content:space-between;     
+   width: 100%;
+   height: 100%;
+    
+}
+.Menu>.Left{   
+    width: 40%;
+    display: flex;
+    align-items: center;
+    padding-left: 75px;
+}
+.CouponIcon{
+    height: 60px;   
+}
+.CouponIcon:hover{
+    cursor: pointer;
+}
+.CouponLabel{
+    padding-left: 15px;
+    font-size: 40px;
+    color: #13172B;
+    font-family: 'Fantasy';
+}
+.CouponLabel:hover{
+    cursor: pointer;
+}
+
+.Menu>.Right{
+    display: flex;
+    align-items: center;
+    padding-right: 25%;   
+    width: 45%;
+}
+
+.Menu>.Right>.MenuLink,.Menu>.Right>.Pop>.MenuLink{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;   
+    padding-right: 25px;
+    text-decoration: none;
+    color: #13172B;
+    font-size: 16px;
+}
+
+.Menu>.Right>.MenuLink:hover, .Menu>.Right>.Pop>.MenuLink:hover{
+    color: #007aff;
+}
+.Menu>.Right>.Pop{  
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 20%;  
+}
+.Menu>.Right>.Pop>label{
+   position: absolute; 
+   top: 65px; 
+   padding: 2px 5px;
+   margin-left: 25px;
+   background-color: #3577f0;   
+   color: white;
+   animation: move .8s infinite;
+   border-radius: 25%;
+
+}
+
+@keyframes move {
+    0% {
+        -webkit-transform: scale(.8);
+        transform: scale(.8);
+    }
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(.8);
+        transform: scale(.8);
+    }
+}
+.Slogan{
+    color: #ff497c;
+}
