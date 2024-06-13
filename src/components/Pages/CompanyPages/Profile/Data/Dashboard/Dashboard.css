@@ -1,0 +1,15 @@
+.Doughunts{
+    display: flex;   
+    justify-content: center;
+    align-items: center;
+}
+.LineChart{   
+    margin: auto;  
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 62.5%;
+    background-color: #222831;
+    border-radius: 20px;
+}

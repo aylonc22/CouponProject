@@ -8,8 +8,7 @@ export function Page404(): JSX.Element {
     useAuthRedirect();
     useEffect(()=>{logic()},[]);
     return (
-        <>
-        <script >alert("hey")</script>
+        <>       
          <div className="Page404">
              <div className="Square404" id="Square">
             <div className="Square">

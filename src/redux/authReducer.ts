@@ -1,13 +1,16 @@
+
+import { resetCompanyState } from "./companyReducer";
+import { couponSystem } from "./store";
+
 export class authState {
     email: string = "";
     name: string = "guest";
-    id:number = 0;
+    userId:number = 0;
     token: string = "";
     userType: string = "";
     isLogged:boolean = false;
 }
 
-//login, logout, updateToken
 export enum AuthActionType {
     login = "login",
     logout = "logout",
@@ -39,9 +42,9 @@ export function AuthReducer(currentState: authState = new authState(), action: A
             newState = action.payload;
             break;
         case AuthActionType.logout:
-            newState = new authState();
+            newState = new authState();            
             break;
-        case AuthActionType.updateToken:
+        case AuthActionType.updateToken:          
             newState.token = action.payload;
             break;
     }

@@ -1,0 +1,14 @@
+.CompanyProfile{
+   display: grid;
+   grid-template-columns: 30% 70%;
+   height: 100%;
+   background-color: #27293D;
+   color: white;
+}
+.LeftProfile{
+   /* display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   width: 100%; */
+}
