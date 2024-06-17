@@ -1,0 +1,22 @@
+.AdminPage {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+    padding: 0% 25%;    
+  }
+  
+  .AdminTableContainer {
+    width: 50%; 
+    margin-top: 20px;
+    margin-bottom: 20% !important;   
+  }
+  
+  .AdminTable {
+    width: 100%;
+  }
+    
+  .DeleteButton {
+    margin-bottom: 0px !important;
+  }

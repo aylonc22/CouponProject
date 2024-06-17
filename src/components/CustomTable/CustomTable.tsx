@@ -16,20 +16,22 @@ import axiosJWT from '../../util/axiosJWT';
 import notify from '../../util/notif';
 import { AxiosError } from 'axios';
 import { axiosErrHandler } from '../../util/axiosErr';
-import { createCompanyState } from '../../redux/companyReducer';
+import { createMyCouponState } from '../../redux/myCouponsReducer';
+import { useNavigate } from 'react-router-dom';
   
-  export default function MyTable():JSX.Element {   
+  export default function CustomTable():JSX.Element {   
     useAuthRedirect();
+    const navigate = useNavigate();
     const [rows, setRows] = useState<Coupon[]>();
   const [selectedRows, setSelectedRows] = useState<number[]>([]);  
   const [isSelectAllChecked, setIsSelectAllChecked] = useState(false);
   
   couponSystem.subscribe(()=>{
-    setRows(couponSystem.getState().company.coupons);
+    setRows(couponSystem.getState().myCoupons.myCoupons);
   });
   useEffect(()=>{
-    setRows(couponSystem.getState().company.coupons);
-  })
+    setRows(couponSystem.getState().myCoupons.myCoupons);
+  },[])
   
   const truncateDescription = (description:string) => {
         const words = description.split(' ');
@@ -73,7 +75,7 @@ import { createCompanyState } from '../../redux/companyReducer';
             if(isSelected(id)) {
                 axiosJWT.delete(`http://localhost:8080/api/v1/company/coupon/${id}`).then(res=>{
                     notify.success("Coupon deleted");
-                }).catch((e:AxiosError)=>axiosErrHandler(e))
+                }).catch((e:AxiosError)=>axiosErrHandler(e)==='Unauthorized'?navigate('/login'):undefined)
                 return false;
            }
            else{
@@ -81,29 +83,27 @@ import { createCompanyState } from '../../redux/companyReducer';
            }
         });
         setRows(updatedRows);
-        couponSystem.dispatch(createCompanyState(updatedRows?updatedRows:[]));
+        couponSystem.dispatch(createMyCouponState(updatedRows?updatedRows:[]));
         setSelectedRows([]);
-      };
-     
+      };   
     return (<div> <Button
        className='DeleteButton'
         onClick={handleDeleteRows}
-        style={{opacity:selectedRows.length === 0?0:1}}
+        style={{opacity:selectedRows.length === 0 || couponSystem.getState().auth.userType ==='CUSTOMER'?0:1}}
       >
         Delete
       </Button>
       <TableContainer className='TableContainer' component={Paper}>
         <Table className='Table' aria-label="simple table">
-          <TableHead style={{position:'sticky',top:0,background:'#fff'}}>
+          <TableHead style={{position:'sticky',top:0,background:'#fff',zIndex:2}}>
             <TableRow>
-            <TableCell padding="checkbox">
-                <Checkbox
-                  
+           {couponSystem.getState().auth.userType ==='COMPANY' && <TableCell style={{background:'#fff',zIndex:1}} padding="checkbox">
+                <Checkbox                 
                   checked={isSelectAllChecked}
                   onChange={handleSelectAllClick}
                   inputProps={{ 'aria-label': 'select all rows' }}
                 />
-              </TableCell>
+              </TableCell>}
               <TableCell width='20px'>ID</TableCell>
               <TableCell>Category</TableCell>
               <TableCell>Title</TableCell>
@@ -112,7 +112,7 @@ import { createCompanyState } from '../../redux/companyReducer';
               <TableCell>End Date</TableCell>
               <TableCell>Amount</TableCell>
               <TableCell>Price</TableCell>              
-              <TableCell>Edit</TableCell>              
+             {couponSystem.getState().auth.userType ==='COMPANY' && <TableCell>Edit</TableCell>}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -125,12 +125,12 @@ import { createCompanyState } from '../../redux/companyReducer';
                 aria-checked={isSelected(row.couponID)}
                 selected={isSelected(row.couponID)}
               >
-                <TableCell padding="checkbox">
-                  <Checkbox
+               {couponSystem.getState().auth.userType ==='COMPANY' && <TableCell padding="checkbox">
+                  <Checkbox                                        
                     checked={isSelected(row.couponID)}
                     inputProps={{ 'aria-labelledby': `row-${row.couponID}-checkbox` }}
                   />
-                </TableCell>
+                </TableCell>}
                 <TableCell width='20px'>{index+1}</TableCell>
                 <TableCell>{row.category}</TableCell>
                 <TableCell>{row.title}</TableCell>
@@ -139,7 +139,7 @@ import { createCompanyState } from '../../redux/companyReducer';
                 <TableCell>{new Date(row.end_date).toDateString()}</TableCell>
                 <TableCell>{row.amount}</TableCell>
                 <TableCell>{row.price}</TableCell>               
-                <TableCell className='EditButton'>Edit</TableCell>
+                {couponSystem.getState().auth.userType ==='COMPANY' && <TableCell onClick={()=>navigate(`/company/editCoupon/${JSON.stringify(row)}`)} className='EditButton'>Edit</TableCell>}
               </TableRow>
             ))}
           </TableBody>

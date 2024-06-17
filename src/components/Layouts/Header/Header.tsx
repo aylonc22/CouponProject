@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { couponSystem } from "../../../redux/store";
 import { logoutAction } from "../../../redux/authReducer";
+import { resetCouponState } from "../../../redux/couponsReducer";
+import { resetAdminState } from "../../../redux/adminReducer";
 export function Header(): JSX.Element {
     const navigate = useNavigate();
     const [visible,setVisible] = useState<Boolean>(false);
@@ -14,6 +16,9 @@ export function Header(): JSX.Element {
         if(isLogged){
             sessionStorage.removeItem("jwt");          
             couponSystem.dispatch(logoutAction());
+            couponSystem.dispatch(resetCouponState());
+            couponSystem.dispatch(resetCouponState());
+            couponSystem.dispatch(resetAdminState());
             navigate("/login");
         }
         else{

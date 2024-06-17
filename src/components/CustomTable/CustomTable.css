@@ -10,9 +10,9 @@
 .DeleteButton{
     width: 50px;
     background-color: red!important;
-    color: white!important;
-    border: solid 1px;
+    color: white!important;   
 }
 .EditButton{
     cursor: pointer;
 }
+

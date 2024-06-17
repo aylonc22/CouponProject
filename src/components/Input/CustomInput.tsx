@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import './Input.css'
 
@@ -7,14 +7,19 @@ interface CustomInputProps {
     label: string;
     name: string;
     type:string;
+    defaultValue?:string | number
 }
 
-export const CustomInput: React.FC<CustomInputProps> = ({ register, label, name ,type}) => {   
-    const handleDate = ()=>{
-        return type=='date'?new Date().toISOString().slice(0,10):"";
-    }
-    const [inputValue,setInputValue] = useState(handleDate());
-   
+export const CustomInput: React.FC<CustomInputProps> = ({ register, label, name ,type,defaultValue}) => {   
+    const [inputValue, setInputValue] = useState(defaultValue ?? ''); 
+
+    useEffect(() => {
+        setInputValue(defaultValue ?? '');
+    }, [defaultValue]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
+    };
     return (
         <div className="inputGroup">           
            <input {...register(name)}  onChange={(e)=>setInputValue(e.target.value)} value={inputValue} type={type} required autoComplete="off" />           

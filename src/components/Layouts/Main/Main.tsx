@@ -6,9 +6,12 @@ import happyLady from '../../../assets/images/happyLady.jpg';
 import horse from '../../../assets/images/horse.jpg';
 import gift from '../../../assets/images/gift.jpg';
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import notify from "../../../util/notif";
 
 export function Main(): JSX.Element {
     useAuthRedirect("Main");    
+    const navigate = useNavigate();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const images = [happyGirl,happyLady,horse,gift];
     const labels = ["Family Vacations","Adventures","Attractions","Gifts"];
@@ -43,7 +46,14 @@ export function Main(): JSX.Element {
                 <div>{descriptionsFirst[currentImageIndex]}</div>
                 <div>{descriptionsSecond[currentImageIndex]}</div>
             </div>
-            <div className="Shop">Shop Now</div>
+            <div onClick={()=>{
+              if(couponSystem.getState().auth.userType==="CUSTOMER"){
+                navigate('/coupons')
+              }
+              else{
+                notify.error("only customers can watch the shop");
+              }
+              }} className="Shop">Shop Now</div>
             </div>           
 			<div className="Right">
             <img src={images[currentImageIndex]}/>

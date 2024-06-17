@@ -31,8 +31,11 @@ export function Menu(): JSX.Element {
         </div>);
     const customeryMenu =(<div className="Right">
             <NavLink className="MenuLink" to='/'>Home</NavLink>           
-            <NavLink className="MenuLink" to='/coupons'>Shop</NavLink>   
-            <NavLink className="MenuLink" to='/customer/details'>User Details</NavLink>        
+            <div className="Pop">
+            <label>buy</label>
+            <NavLink className="MenuLink" to='/coupons'>Shop</NavLink> 
+            </div>  
+            <NavLink className="MenuLink" to='/customer/details'>Profile</NavLink>        
     </div>);
     const handleMenu = ()=>{
         switch (menuType) {

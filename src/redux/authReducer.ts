@@ -1,7 +1,4 @@
 
-import { resetCompanyState } from "./companyReducer";
-import { couponSystem } from "./store";
-
 export class authState {
     email: string = "";
     name: string = "guest";

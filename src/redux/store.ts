@@ -2,10 +2,12 @@
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { AuthReducer } from "./authReducer";
-import { CompanyReducer } from "./companyReducer";
+import { MyCouponStateReducer } from "./myCouponsReducer";
+import { CouponReducer } from "./couponsReducer";
+import { AdminReducer } from "./adminReducer";
 
 
-const reducers = combineReducers({auth:AuthReducer,company:CompanyReducer});
+const reducers = combineReducers({auth:AuthReducer,myCoupons:MyCouponStateReducer,coupons:CouponReducer,admin:AdminReducer});
 
 
 export const couponSystem = configureStore({

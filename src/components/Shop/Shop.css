@@ -1,0 +1,10 @@
+.Cards{   
+    margin: auto;
+    width: 90%;
+    padding: 1%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    overflow: auto;   
+}

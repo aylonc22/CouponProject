@@ -1,8 +1,8 @@
 import { jwtDecode } from "jwt-decode";
 import { loginAction } from "../redux/authReducer";
 import { couponSystem } from "../redux/store";
-import { useNavigate } from "react-router-dom";
-import { resetCompanyState } from "../redux/companyReducer";
+import { resetMyCouponState } from "../redux/myCouponsReducer";
+import { resetCouponState } from "../redux/couponsReducer";
 
 type jwtData = {
     "userType": string,
@@ -27,7 +27,8 @@ export const checkData = () => {
                 isLogged: true
             };            
             couponSystem.dispatch(loginAction(myAuth));
-            couponSystem.dispatch(resetCompanyState());
+            couponSystem.dispatch(resetMyCouponState());
+            couponSystem.dispatch(resetCouponState());
         } catch {           
             return;
         }

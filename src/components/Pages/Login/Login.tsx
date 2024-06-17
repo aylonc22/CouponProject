@@ -26,8 +26,7 @@ export function Login():JSX.Element{
         }
         userCredential.userType = userCredential.userType.toUpperCase();
         axiosJWT.post("http://localhost:8080/api/v1/user/login",userCredential).then(res=>{
-            notify.success(`WELCOME!`)                       
-            console.log(res.data);
+            notify.success(`WELCOME!`)                                  
             couponSystem.dispatch(loginAction({email:userCredential.email,
                 name:res.data.userName,
                 token:res.headers.authorization,
