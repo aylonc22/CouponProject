@@ -16,6 +16,12 @@ export function CouponCard(coupon:CardProps):JSX.Element{
     const cardCoupon = coupon.coupon;
     const [amount,setAmount] = useState(cardCoupon.amount);
     const handleBuy = ()=>{
+       if(couponSystem.getState().auth.userType === 'guest')
+        {
+            notify.error('In order to buy you need to login')
+            navigate('/login')
+            return;
+        }
         if(cardCoupon.amount===0){
             notify.error('You cannot buy this coupon');
             return;

@@ -46,8 +46,8 @@ export function Main(): JSX.Element {
                 <div>{descriptionsFirst[currentImageIndex]}</div>
                 <div>{descriptionsSecond[currentImageIndex]}</div>
             </div>
-            <div onClick={()=>{
-              if(couponSystem.getState().auth.userType==="CUSTOMER"){
+            <div onClick={()=>{             
+              if(couponSystem.getState().auth.userType==="CUSTOMER" || couponSystem.getState().auth.userType==="guest"){
                 navigate('/coupons')
               }
               else{

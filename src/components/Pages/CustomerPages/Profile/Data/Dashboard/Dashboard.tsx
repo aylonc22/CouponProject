@@ -96,12 +96,7 @@ export function Dashboard():JSX.Element{
         handleCategories(newCoupons);
         handleByDate(newCoupons);
     }
-        ,[coupons]);
-    const handleRemaining = (coupons:Coupon[])=>{
-            let res = 0;
-            coupons.forEach(coupon=>res+=coupon.amount);
-            return res;
-    }
+        ,[coupons]);   
     const totalCoupons = [
         categories?.Food.length?categories.Food.length:0,
         categories?.Electricity.length?categories.Electricity.length:0,
@@ -109,15 +104,7 @@ export function Dashboard():JSX.Element{
         categories?.Vacation.length?categories.Vacation.length:0,
         categories?.Healthcare.length?categories.Healthcare.length:0,
         categories?.Gaming.length?categories.Gaming.length:0
-    ]
-    const totalAmountRemaining = [
-        categories?.Food.length?handleRemaining(categories.Food):0,
-        categories?.Electricity.length?handleRemaining(categories.Electricity):0,
-        categories?.Restaurant.length?handleRemaining(categories.Restaurant):0,
-        categories?.Vacation.length?handleRemaining(categories.Vacation):0,
-        categories?.Healthcare.length?handleRemaining(categories.Healthcare):0,
-        categories?.Gaming.length?handleRemaining(categories.Gaming):0
-    ]
+    ]  
     const totalCouponsByMonth = [
         byDate?.January.length?byDate.January.length:0,
         byDate?.February.length?byDate.February.length:0,
@@ -134,8 +121,7 @@ export function Dashboard():JSX.Element{
     ]
    return (<div >
     <div className='Doughunts'>
-        <CustomDoughunt numbers={totalCoupons} label='Total Coupons Available'/>
-        <CustomDoughunt numbers={totalAmountRemaining} label='Total Amount Remaining'/>
+        <CustomDoughunt numbers={totalCoupons} label='Total Coupons Available'/>       
     </div>
     <div className='LineChart'>
     <Line data={{labels: ['January', 'February', 'March', 'April', 'May', 'June', 

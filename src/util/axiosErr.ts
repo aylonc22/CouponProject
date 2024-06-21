@@ -13,6 +13,7 @@ export function axiosErrHandler(err:AxiosError):string{
                     notify.error("Token expired");  
                     return 'Unauthorized';
             }
+            else
             if(err.response.data)
                 {
                     notify.error(JSON.parse(JSON.stringify(err.response.data))['value']);

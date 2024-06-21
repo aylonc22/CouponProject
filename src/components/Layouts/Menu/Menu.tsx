@@ -29,7 +29,7 @@ export function Menu(): JSX.Element {
             </div>  
             <NavLink className="MenuLink" to='/company/details'>Profile</NavLink>        
         </div>);
-    const customeryMenu =(<div className="Right">
+    const customerMenu =(<div className="Right">
             <NavLink className="MenuLink" to='/'>Home</NavLink>           
             <div className="Pop">
             <label>buy</label>
@@ -44,7 +44,7 @@ export function Menu(): JSX.Element {
             case 'COMPANY':
                 return companyMenu;
             case 'CUSTOMER':
-                return customeryMenu;
+                return customerMenu;
             default:
                 return guestMenu;               
         }

@@ -4,7 +4,7 @@ export class authState {
     name: string = "guest";
     userId:number = 0;
     token: string = "";
-    userType: string = "";
+    userType: string = "guest";
     isLogged:boolean = false;
 }
 

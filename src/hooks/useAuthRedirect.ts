@@ -8,7 +8,7 @@ export function useAuthRedirect(fc:string = ""):void{
     const navigate = useNavigate();
     useEffect(()=>{
         checkData();   
-        if(couponSystem.getState().auth.token.length<10 && fc!=='Main' && fc!=='About'){           
+        if(couponSystem.getState().auth.token.length<10 && (fc!=='Main' && fc!=='About' && fc!=='Shop') ){           
             navigate('/login');
         }
     },[fc,navigate]);
