@@ -16,7 +16,7 @@ interface customerEdit{
     email:string;
 }
 export function EditCustomer():JSX.Element{
-    useAuthRedirect();
+    useAuthRedirect("","Customer");
     const params = useParams();
     const customer:customerEdit = JSON.parse(params.customer as string);
     const navigate = useNavigate();

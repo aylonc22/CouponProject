@@ -4,7 +4,7 @@ import './CustomerProfile.css';
 import { Panel } from './Panel/Panel';
 
 export function CustomerProfile():JSX.Element{ 
-    useAuthRedirect();
+    useAuthRedirect("","Customer");
     return (<div className='CompanyProfile'>
        <Panel/>
       <CustomerPanelRoute/>

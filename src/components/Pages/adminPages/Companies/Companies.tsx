@@ -10,9 +10,10 @@ import axiosJWT from '../../../../util/axiosJWT';
 import { useNavigate } from 'react-router-dom';
 
 export function Companies():JSX.Element{
-    useAuthRedirect();    
+    useAuthRedirect("","Admin");      
     const navigate = useNavigate();
     useEffect(()=>{
+        if(couponSystem.getState().auth.token.length>10)
         axiosJWT.get('http://localhost:8080/api/v1/admin/company').then(res=>{
             couponSystem.dispatch(createCompanyState(res.data));
         }).catch((e:AxiosError)=>axiosErrHandler(e)==='Unauthorized'?navigate('/login'):undefined);

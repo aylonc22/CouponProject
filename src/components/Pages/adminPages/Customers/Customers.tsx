@@ -12,12 +12,13 @@ import { useNavigate } from 'react-router-dom';
 
 
 export function Customers():JSX.Element{
-    useAuthRedirect();    
+    useAuthRedirect("","Admin");    
     const navigate = useNavigate();
     useEffect(()=>{
-        axiosJWT.get('http://localhost:8080/api/v1/admin/customer').then(res=>{
-            couponSystem.dispatch(createCustomerState(res.data));
-        }).catch((e:AxiosError)=>axiosErrHandler(e)==='Unauthorized'?navigate('/login'):undefined);
+        if(couponSystem.getState().auth.token.length>10)
+            axiosJWT.get('http://localhost:8080/api/v1/admin/customer').then(res=>{
+                couponSystem.dispatch(createCustomerState(res.data));
+            }).catch((e:AxiosError)=>axiosErrHandler(e)==='Unauthorized'?navigate('/login'):undefined);
     })  
     return <div>
         <AdminCustomTable type='Customer' />

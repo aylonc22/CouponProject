@@ -14,7 +14,7 @@ import {createMyCouponState } from '../../../../redux/myCouponsReducer';
 
 
 export function EditCoupon():JSX.Element{
-    useAuthRedirect();
+    useAuthRedirect("","Company");
     const params = useParams();
     const coupon:Coupon = JSON.parse(params.coupon ? params.coupon : '');        
     const navigate = useNavigate();    

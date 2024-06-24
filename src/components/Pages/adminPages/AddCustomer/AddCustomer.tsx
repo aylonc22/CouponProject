@@ -11,7 +11,7 @@ import { Customer } from '../../../../model/Customer';
 
 
 export function AddCustomer():JSX.Element{
-    useAuthRedirect();
+    useAuthRedirect("","Customer");
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm<Customer>();
     const onSubmit: SubmitHandler<Customer> = (Customer) => {               

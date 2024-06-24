@@ -15,7 +15,7 @@ interface companyEdit{
     email:string;
 }
 export function EditCompany():JSX.Element{
-    useAuthRedirect();
+    useAuthRedirect("","Company");
     const params = useParams();    
     const company:companyEdit = JSON.parse(params.company as string);
     const navigate = useNavigate();

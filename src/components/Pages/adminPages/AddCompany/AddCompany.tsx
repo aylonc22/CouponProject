@@ -11,7 +11,7 @@ import { useAuthRedirect } from '../../../../hooks/useAuthRedirect';
 
 
 export function AddCompany():JSX.Element{
-    useAuthRedirect();
+    useAuthRedirect("","Company");
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm<Company>();
     const onSubmit: SubmitHandler<Company> = (Company) => {               

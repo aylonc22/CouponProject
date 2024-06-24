@@ -15,7 +15,7 @@ import { addMyCouponStateAction } from '../../../../redux/myCouponsReducer';
 
 
 export function AddCoupon():JSX.Element{
-    useAuthRedirect();
+    useAuthRedirect("","Company");
     const navigate = useNavigate();    
     const { register, handleSubmit, formState: { errors } } = useForm<Coupon>();
     const onSubmit: SubmitHandler<Coupon> = (Coupon) => { 
