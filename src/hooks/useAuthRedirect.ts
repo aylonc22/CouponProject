@@ -13,8 +13,9 @@ export function useAuthRedirect(fc:string = "",auth:string = ""):void{
             navigate('/login');           
         }
         else
-        {            
-            if(auth!=="" && auth.toUpperCase()!==couponSystem.getState().auth.userType.toUpperCase()){
+        {           
+            const userType:string =  couponSystem.getState().auth.userType.toLocaleUpperCase()
+            if(userType!=="ADMIN" && auth!=="" && auth.toUpperCase()!==userType){
             notify.error(`Access Denied Only: ${auth} Is Allowed`)
             navigate('/');
         }}
