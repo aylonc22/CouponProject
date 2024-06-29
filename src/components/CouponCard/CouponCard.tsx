@@ -43,7 +43,7 @@ export function CouponCard(coupon:CardProps):JSX.Element{
        
        <div className='ImageContainer'>
        <div className='PopShop'>New</div>
-        <img style={{width:'100%',height:'60%'}} srcSet='https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg' 
+        <img style={{width:'100%',height:'60%'}} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg' ; }}
         src={cardCoupon.image} alt='Coupon'/>
        </div>
        <div className='CardDetails'>
